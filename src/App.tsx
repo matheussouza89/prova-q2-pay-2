@@ -1,19 +1,9 @@
 import Customers from 'pages/customers'
 import Login from 'pages/login'
-import React from 'react'
 import { Provider } from 'react-redux'
-import {
-  BrowserRouter,
-  Route,
-  Routes,
-  Navigate,
-  Outlet
-} from 'react-router-dom'
+import { PrivateRoute } from 'components/privateRoute/PrivateRoute'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { store } from 'redux/store'
-import { isAuthenticated } from 'util/auth'
-
-const PrivateRoute = () =>
-  isAuthenticated() ? <Outlet /> : <Navigate to="/login" replace />
 
 function App() {
   return (
