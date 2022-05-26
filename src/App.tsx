@@ -1,18 +1,28 @@
 import React from 'react'
 import { Provider } from 'react-redux'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+  Navigate,
+  Outlet
+} from 'react-router-dom'
 import { store } from 'redux/store'
+import { isAuthenticated } from 'util/auth'
+
+const PrivateRoute = () =>
+  isAuthenticated() ? <Outlet /> : <Navigate to="/login" replace />
 
 function App() {
   return (
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
-          {/* {RouteGenerator()} */}
-          <Route path="/Login" element={<></>} />
+          <Route path="/login" element={<></>} />
+          <Route path="/" element={<PrivateRoute />}>
+            <Route path="customers" element={<></>} />
+          </Route>
         </Routes>
-        {/* <ToastContainer /> */}
-        {/* <GlobalStyle /> */}
       </BrowserRouter>
     </Provider>
   )
