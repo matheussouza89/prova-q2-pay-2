@@ -1,3 +1,5 @@
+import Customers from 'pages/customers'
+import Login from 'pages/login'
 import React from 'react'
 import { Provider } from 'react-redux'
 import {
@@ -18,9 +20,9 @@ function App() {
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
-          <Route path="/login" element={<></>} />
+          <Route path="/login" element={<Login />} />
           <Route path="/" element={<PrivateRoute />}>
-            <Route path="customers" element={<></>} />
+            <Route path="customers" element={<Customers />} />
           </Route>
         </Routes>
       </BrowserRouter>
