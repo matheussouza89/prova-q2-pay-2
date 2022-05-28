@@ -9,14 +9,16 @@ const Login = () => {
     <div className="d-flex justify-content-center align-items-center min-vh-100">
       <div className="content-login">
         <Row>
-          <Col xl={6}>
+          <Col lg={6}>
             <div className="illustration">
               <img src={logo} />
+              <h1 className="title">Mauris aliquam</h1>
+              <span className="subtitle">Proin venenatis pellentesque</span>
             </div>
           </Col>
-          <Col xl={6}>
+          <Col lg={6}>
             <div className="form-login">
-              <h1>Faça seu login</h1>
+              <h1 className="title">Faça seu login</h1>
               <Input type="text" placeholder="E-mail" />
               <Input type="text" placeholder="Senha" />
               <Button className="btn-login w-100">ENTRAR</Button>

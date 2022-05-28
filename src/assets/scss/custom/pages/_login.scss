@@ -14,7 +14,7 @@ body{
   padding: 25px;
   margin: 25px;
 
-  h1{
+  .title{
     font-size: 20px;
     color: $blue-300;
   }
@@ -53,16 +53,18 @@ body{
 }
 
 .illustration{
+  align-items: center;
   background-size: contain;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: 100%;
   height: 100%;
   border-radius: 10px 0 0 10px;
+  text-align: center;
 
   img{
     display: flex;
-    align-self: center;
-    justify-content: center;
     width: 100%;
   }
 }
@@ -90,5 +92,16 @@ body{
     color: $blue-300;
     font-size: 14px;
     font-weight: $font-weight-bold;
+  }
+}
+
+
+@include media-breakpoint-down(lg){
+  .content-login {
+    width: 80%;
+  }
+
+  .subtitle{
+    display: none;
   }
 }
