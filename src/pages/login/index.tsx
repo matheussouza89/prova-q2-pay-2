@@ -6,7 +6,7 @@ import logo from 'assets/img/login.png'
 
 const Login = () => {
   return (
-    <div className="d-flex justify-content-center align-items-center min-vh-100">
+    <div className="bg-login">
       <div className="content-login">
         <Row>
           <Col lg={6}>
