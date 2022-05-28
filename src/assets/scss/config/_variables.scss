@@ -1,38 +1,3 @@
-$white:    #fff !default;
-$gray-100: #f1f3fa;
-$gray-200: #eef2f7;
-$gray-300: #dee2e6 !default;
-$gray-400: #ced4da !default;
-$gray-500: #adb5bd !default;
-$gray-600: #98a6ad;
-$gray-700: #6c757d;
-$gray-800: #343a40 !default;
-$gray-900: #313a46;
-$black:    #000 !default;
-
-$grays: (
-  "100": $gray-100,
-  "200": $gray-200,
-  "300": $gray-300,
-  "400": $gray-400,
-  "500": $gray-500,
-  "600": $gray-600,
-  "700": $gray-700,
-  "800": $gray-800,
-  "900": $gray-900
-);
-
-$blue:       #2c8ef8;
-$indigo:     #727cf5;
-$purple:     #6b5eae;
-$pink:       #ff679b;
-$red:        #E84752;
-$orange:     #fd7e14;
-$yellow:     #ffbc00;
-$green:      #0acf97;
-$teal:       #02a8b5;
-$cyan:       #39afd1;
-
 $blue-100: #399BF7;
 $blue-200: #2A73B8;
 $blue-300: #286CAC;
@@ -44,35 +9,6 @@ $blue-800: #1C4B78;
 $blue-900: #163B5E;
 
 $bg-login: $blue-300;
-
-$primary:       $red;
-$secondary:     $gray-700;
-$success:       $green;
-$info:          $cyan;
-$warning:       $yellow;
-$danger:        $red;
-$light:         $gray-200;
-$dark:          $gray-900;
-
-$font-size-base:              1rem;
-$font-size-sm:                $font-size-base - .025;
-$font-size-lg:                $font-size-base * 1.390;
-
-$font-weight-light:           300;
-$font-weight-normal:          400;
-$font-weight-bold:            700;
-$font-weight-bolder:          bolder;
-
-$line-height-base:            1.5;
-$line-height-sm:              1.25;
-$line-height-lg:              2;
-
-$h1-font-size:                2.25rem;
-$h2-font-size:                1.875rem;
-$h3-font-size:                1.5rem;
-$h4-font-size:                1.125rem;
-$h5-font-size:                0.9375rem;
-$h6-font-size:                0.75rem;
 
 $gap-5: 5px;
 $gap-10: 10px;
