@@ -1,0 +1,8 @@
+export enum CustomersActionTypes {
+  API_RESPONSE_SUCCESS = '@@customers/API_RESPONSE_SUCCESS',
+  API_RESPONSE_ERROR = '@@customers/API_RESPONSE_ERROR',
+
+  SET_CUSTOMERS = '@@customers/SET_CUSTOMERS',
+  CLEAN_CUSTOMERS = '@@customers/CLEAN_CUSTOMERS',
+  GET_ALL_CUSTOMERS_SAGA = '@@customers/GET_ALL_CUSTOMERS_SAGA'
+}

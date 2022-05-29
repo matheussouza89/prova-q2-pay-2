@@ -1,3 +1,6 @@
 import { combineReducers } from 'redux'
+import Customers from './customers/reducers'
 
-export default combineReducers({})
+export default combineReducers({
+  Customers
+})
