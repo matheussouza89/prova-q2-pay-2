@@ -4,18 +4,24 @@ import { Provider } from 'react-redux'
 import { PrivateRoute } from 'components/privateRoute/PrivateRoute'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { store } from 'redux/store'
+import { createTheme, ThemeProvider } from '@mui/material'
+import { ptBR } from '@mui/material/locale'
+
+const theme = createTheme(ptBR)
 
 function App() {
   return (
     <Provider store={store}>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/" element={<PrivateRoute />}>
-            <Route path="customers" element={<Customers />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/" element={<PrivateRoute />}>
+              <Route path="customers" element={<Customers />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </ThemeProvider>
     </Provider>
   )
 }
