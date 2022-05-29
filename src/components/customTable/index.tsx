@@ -26,6 +26,7 @@ export default function CustomTable({ data, columns }: CustomTableProps) {
         onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
         loading={false}
         rowCount={3}
+        disableSelectionOnClick
       />
     </div>
   )
