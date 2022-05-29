@@ -4,7 +4,7 @@ import axios from 'axios'
 // import config from '../../config'
 
 axios.defaults.headers.post['Content-Type'] = 'application/json'
-axios.defaults.baseURL = 'https://run.mocky.io/v3'
+axios.defaults.baseURL = 'http://localhost:5000'
 
 axios.interceptors.response.use(
   (response) => {
