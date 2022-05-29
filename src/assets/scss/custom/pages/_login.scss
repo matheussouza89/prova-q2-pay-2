@@ -1,6 +1,5 @@
 .bg-login{
-  background: rgb(22,35,135);
-  background: linear-gradient(133deg, rgba(22,35,135,1) 0%, rgba(40,108,172,1) 64%) no-repeat;
+  background: $blue-gradient no-repeat;
   background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;

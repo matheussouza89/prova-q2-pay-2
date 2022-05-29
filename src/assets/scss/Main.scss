@@ -9,5 +9,10 @@
 @import "./config/global";
 @import "./config/light-mode";
 
+//components
+@import "./custom/components/navbar";
+@import "./custom/components/sidebar";
+
 //custom pages
-@import "./custom/pages/login"
+@import "./custom/pages/login";
+@import "./custom/pages/customers";
