@@ -1,12 +1,14 @@
-body{
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
+body {
   background-color: #f9f9f9;
+  font-family: 'Nunito', sans-serif;
 }
 
-body[theme="dark"]{
+body[theme='dark'] {
   background-color: #f5f5f5;
 }
 
-#root{
+#root {
   min-height: 100vh;
 }
 
@@ -40,4 +42,13 @@ body[theme="dark"]{
 
 .column-gap-20 {
   column-gap: $gap-20;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  content: var(--bs-breadcrumb-divider, '>') !important ;
+  color: #adb5bd;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
