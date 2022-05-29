@@ -69,7 +69,7 @@ a {
 .nav_icon {
   font-size: 1.25rem;
 }
-.show {
+.show-sidebar {
   left: 0;
 }
 .main-content {
@@ -97,7 +97,7 @@ a {
     left: 0;
     padding: 1rem 1rem 0 0;
   }
-  .show {
+  .show-sidebar {
     width: calc(var(--nav-width) + 156px);
   }
   .main-content.open {

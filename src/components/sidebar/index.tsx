@@ -24,7 +24,10 @@ const Sidebar = ({ children }: SidebarProps) => {
   }
   return (
     <>
-      <div className={classnames('l-navbar', show && 'show')} id="nav-bar">
+      <div
+        className={classnames('l-navbar', show && 'show-sidebar')}
+        id="nav-bar"
+      >
         <nav className="nav">
           <div>
             <a
