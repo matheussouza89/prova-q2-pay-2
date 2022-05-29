@@ -26,7 +26,7 @@ const Breadcrumbs = ({ title, breadcrumbItems }: BreadcrumbsProps) => {
           <div className="d-flex justify-content-between align-items-center">
             <h4 className="page-title">{title}</h4>
             <div className="page-path">
-              <BreadcrumbB listProps={{ className: 'm-0' }}>
+              <BreadcrumbB>
                 <BreadcrumbItem>
                   <a href="/">React</a>
                 </BreadcrumbItem>
