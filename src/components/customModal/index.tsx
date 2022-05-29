@@ -7,6 +7,7 @@ interface CustomModalProps {
   title: string
   children: React.ReactNode
   footer?: React.ReactNode
+  size?: string
 }
 
 const CustomModal = ({
@@ -14,11 +15,12 @@ const CustomModal = ({
   handleClose,
   title,
   children,
-  footer
+  footer,
+  size = 'lg'
 }: CustomModalProps) => {
   return (
     <div className="modal">
-      <Modal isOpen={isOpen} toggle={handleClose}>
+      <Modal size={size} isOpen={isOpen} toggle={handleClose}>
         <ModalHeader toggle={handleClose}>
           <h4 className="modal-title">{title}</h4>
         </ModalHeader>
