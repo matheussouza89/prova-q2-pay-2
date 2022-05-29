@@ -2,7 +2,6 @@ import { createStore, compose, applyMiddleware, Store } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import reducers from './reducers'
 import rootSaga from './sagas'
-import AppState from './storeType'
 
 declare global {
   interface Window {
@@ -12,20 +11,23 @@ declare global {
 
 const sagaMiddleware = createSagaMiddleware()
 const middlewares = [sagaMiddleware]
+let store: Store
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-function configureStore(initialState: {}) {
+export function configureStore(initialState: {}) {
   const composeEnhancers =
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-  const localstore: Store<AppState> = createStore(
+  const localstore: Store = createStore(
     reducers,
     initialState,
     composeEnhancers(applyMiddleware(...middlewares))
   )
   sagaMiddleware.run(rootSaga)
 
+  store = localstore
   return localstore
 }
 
-export const store = configureStore({})
+export type AppState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch
