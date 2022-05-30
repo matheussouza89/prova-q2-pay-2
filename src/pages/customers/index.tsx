@@ -28,11 +28,11 @@ const Customers = () => {
     }))
 
   useEffect(() => {
-    dispatch(getCustomers(1, 5))
+    dispatch(getCustomers(1, 3))
   }, [dispatch])
 
   const [page, setPage] = useState(1)
-  const [pageSize, setPageSize] = useState(1)
+  const [pageSize, setPageSize] = useState(3)
 
   const handleClose = () => {
     dispatch(cleanCustomer())

@@ -13,7 +13,7 @@ export const COLUMNS: GridColDef[] = [
   {
     field: 'bankName',
     headerName: 'Banco',
-    width: 200,
+    width: 250,
     valueGetter: (params: GridValueGetterParams) =>
       `${params.row.bank.bankName || ''}`
   },

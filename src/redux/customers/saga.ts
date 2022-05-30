@@ -57,7 +57,7 @@ function* criarCustomer(params: {
   try {
     yield put(setLoading(true))
     yield call(createCustomerApi, { data: params.value })
-    const response = yield call(getCustomersApi, { _page: 1, _limit: 5 })
+    const response = yield call(getCustomersApi, { _page: 1, _limit: 3 })
     const customers = response.data
     yield put(
       customersApiResponseSuccess(CustomersActionTypes.SET_CUSTOMER, customers)
@@ -76,7 +76,7 @@ function* removerCustomer(params: {
   try {
     yield put(setLoading(true))
     yield call(removeCustomerApi, { id: params.value })
-    const response = yield call(getCustomersApi, { _page: 1, _limit: 5 })
+    const response = yield call(getCustomersApi, { _page: 1, _limit: 3 })
     const customers = response.data
     yield put(
       customersApiResponseSuccess(CustomersActionTypes.SET_CUSTOMER, customers)
@@ -98,7 +98,7 @@ function* editarCustomer(params: {
       id: params.value.id,
       data: params.value.data
     })
-    const response = yield call(getCustomersApi, { _page: 1, _limit: 5 })
+    const response = yield call(getCustomersApi, { _page: 1, _limit: 3 })
     const customers = response.data
     yield put(
       customersApiResponseSuccess(CustomersActionTypes.SET_CUSTOMER, customers)
