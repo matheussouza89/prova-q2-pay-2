@@ -3,17 +3,14 @@ import { SagaIterator } from '@redux-saga/core'
 import { CustomersActionTypes } from './constants'
 import {
   getCustomers as getCustomersApi,
-  getCustomer as getCustomerApi
+  getCustomer as getCustomerApi,
+  createCustomer as createCustomerApi
 } from 'helpers'
 import {
   // customersApiResponseError,
   customersApiResponseSuccess
 } from './actions'
-
-type CustomersData = {
-  value: any
-  type: string
-}
+import { CustomersData } from 'models/types'
 
 function* listarCustomers(): SagaIterator {
   try {
@@ -22,21 +19,42 @@ function* listarCustomers(): SagaIterator {
     yield put(
       customersApiResponseSuccess(CustomersActionTypes.SET_CUSTOMERS, customers)
     )
-  } catch (error: any) {
+  } catch (error) {
     // yield put(
     //   customersApiResponseError(CustomersActionTypes.SET_LISTA_MOTIVOS, error)
     // )
   }
 }
 
-function* listarCustomer({ value }: CustomersData): SagaIterator {
+function* listarCustomer(params: {
+  value: number
+  type: string
+}): SagaIterator {
   try {
-    const response = yield call(getCustomerApi, { id: value })
+    const response = yield call(getCustomerApi, { id: params.value })
     const customer = response.data
     yield put(
       customersApiResponseSuccess(CustomersActionTypes.SET_CUSTOMER, customer)
     )
-  } catch (error: any) {
+  } catch (error) {
+    // yield put(
+    //   customersApiResponseError(CustomersActionTypes.SET_LISTA_MOTIVOS, error)
+    // )
+  }
+}
+
+function* criarCustomer(params: {
+  value: CustomersData
+  type: string
+}): SagaIterator {
+  try {
+    yield call(createCustomerApi, { data: params.value })
+    const response = yield call(getCustomersApi)
+    const customers = response.data
+    yield put(
+      customersApiResponseSuccess(CustomersActionTypes.SET_CUSTOMER, customers)
+    )
+  } catch (error) {
     // yield put(
     //   customersApiResponseError(CustomersActionTypes.SET_LISTA_MOTIVOS, error)
     // )
@@ -51,8 +69,16 @@ export function* watchListarCustomer() {
   yield takeEvery(CustomersActionTypes.GET_CUSTOMER_SAGA, listarCustomer)
 }
 
+export function* watchCriarCustomer() {
+  yield takeEvery(CustomersActionTypes.POST_CUSTOMER_SAGA, criarCustomer)
+}
+
 function* customersSaga() {
-  yield all([fork(watchListarCustomers), fork(watchListarCustomer)])
+  yield all([
+    fork(watchListarCustomers),
+    fork(watchListarCustomer),
+    fork(watchCriarCustomer)
+  ])
 }
 
 export default customersSaga

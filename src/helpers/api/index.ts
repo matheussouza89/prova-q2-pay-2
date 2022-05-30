@@ -1,3 +1,7 @@
-import { getCustomers, getCustomer } from 'helpers/api/customers'
+import {
+  getCustomers,
+  getCustomer,
+  createCustomer
+} from 'helpers/api/customers'
 
-export { getCustomers, getCustomer }
+export { getCustomers, getCustomer, createCustomer }

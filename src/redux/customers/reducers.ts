@@ -1,11 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/ban-types */
+import { CustomersState } from 'models/types'
 import { CustomersActionTypes } from './constants'
 
 const INIT_STATE: CustomersState = {
   customers: [],
   customer: {
-    id: 0,
     name: '',
     document: '',
     bank: {
@@ -14,18 +13,6 @@ const INIT_STATE: CustomersState = {
       bankName: '',
       code: ''
     }
-  }
-}
-
-type CustomersData = {
-  id: number
-  name: string
-  document: string
-  bank: {
-    bankName: string
-    code: string
-    agency: string
-    account: string
   }
 }
 
@@ -38,11 +25,6 @@ type CustomersActionType = {
     | CustomersActionTypes.SET_CUSTOMER
   field?: any
   value?: any
-}
-
-export type CustomersState = {
-  customers?: CustomersData[]
-  customer?: CustomersData
 }
 
 const Customers = (state = INIT_STATE, action: CustomersActionType) => {
@@ -61,7 +43,27 @@ const Customers = (state = INIT_STATE, action: CustomersActionType) => {
     case CustomersActionTypes.CLEAN_CUSTOMERS:
       return { ...state, customers: INIT_STATE.customers }
     case CustomersActionTypes.SET_CUSTOMER:
-      return { ...state, customer: action.value.data }
+      if (action.field.indexOf('.') !== -1) {
+        const arr: string[] = action.field.split('.')
+        if (state.customer) {
+          return {
+            ...state,
+            customer: {
+              ...state.customer,
+              [arr[0]]: {
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                //@ts-ignore
+                ...state.customer[arr[0]],
+                [arr[1]]: action.value
+              }
+            }
+          }
+        }
+      }
+      return {
+        ...state,
+        customer: { ...state.customer, [action.field]: action.value }
+      }
     default:
       return { ...state }
   }

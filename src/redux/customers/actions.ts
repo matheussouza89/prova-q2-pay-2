@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { CustomersData } from './../../models/types'
 import { CustomersActionTypes } from './constants'
 
 export type CustomersActionType = {
@@ -8,6 +10,8 @@ export type CustomersActionType = {
     | CustomersActionTypes.CLEAN_CUSTOMERS
     | CustomersActionTypes.GET_ALL_CUSTOMERS_SAGA
     | CustomersActionTypes.GET_CUSTOMER_SAGA
+    | CustomersActionTypes.POST_CUSTOMER_SAGA
+    | CustomersActionTypes.SET_CUSTOMER
   value?: any
   field?: string
 }
@@ -44,4 +48,18 @@ export const getCustomers = (): CustomersActionType => ({
 export const getCustomer = (id: number): CustomersActionType => ({
   type: CustomersActionTypes.GET_CUSTOMER_SAGA,
   value: id
+})
+
+export const setCustomer = (
+  value: any,
+  field: string
+): CustomersActionType => ({
+  type: CustomersActionTypes.SET_CUSTOMER,
+  value: value,
+  field: field
+})
+
+export const postCustomer = (data: CustomersData): CustomersActionType => ({
+  type: CustomersActionTypes.POST_CUSTOMER_SAGA,
+  value: data
 })

@@ -6,5 +6,6 @@ export enum CustomersActionTypes {
   SET_CUSTOMERS = '@@customers/SET_CUSTOMERS',
   CLEAN_CUSTOMERS = '@@customers/CLEAN_CUSTOMERS',
   GET_ALL_CUSTOMERS_SAGA = '@@customers/GET_ALL_CUSTOMERS_SAGA',
-  GET_CUSTOMER_SAGA = '@@customers/GET_CUSTOMER_SAGA'
+  GET_CUSTOMER_SAGA = '@@customers/GET_CUSTOMER_SAGA',
+  POST_CUSTOMER_SAGA = '@@customers/POST_CUSTOMER_SAGA'
 }
