@@ -3,9 +3,9 @@ import { CustomersData } from 'models/types'
 
 const api = new APICore()
 
-export function getCustomers() {
-  const baseUrl = `/customers`
-  return api.get(baseUrl, {})
+export function getCustomers(params: { _page: number; _limit: number }) {
+  const baseUrl = `/customers/`
+  return api.get(baseUrl, params)
 }
 
 export function getCustomer(params: { id: number }) {

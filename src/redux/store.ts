@@ -18,13 +18,12 @@ export function configureStore(initialState: {}) {
   const composeEnhancers =
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-  const localstore: Store = createStore(
+  const localstore = createStore(
     reducers,
     initialState,
     composeEnhancers(applyMiddleware(...middlewares))
   )
   sagaMiddleware.run(rootSaga)
-
   store = localstore
   return localstore
 }

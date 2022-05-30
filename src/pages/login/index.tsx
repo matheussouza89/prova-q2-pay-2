@@ -5,13 +5,12 @@ import { FcGoogle } from 'react-icons/fc'
 import logo from 'assets/img/login.png'
 import useRedux from 'hooks/useRedux'
 import { setLogin, loginSystem } from 'redux/actions'
-import { AppState } from 'redux/store'
 import { register } from 'helpers/api/auth'
 
 const Login = () => {
   const { dispatch, appSelector } = useRedux()
 
-  const { login } = appSelector<AppState>((state) => ({
+  const { login } = appSelector((state) => ({
     login: state.Auth.login
   }))
 

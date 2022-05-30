@@ -47,8 +47,12 @@ export const cleanCustomers = (): CustomersActionType => ({
   type: CustomersActionTypes.CLEAN_CUSTOMERS
 })
 
-export const getCustomers = (): CustomersActionType => ({
-  type: CustomersActionTypes.GET_ALL_CUSTOMERS_SAGA
+export const getCustomers = (
+  _page: number,
+  _limit: number
+): CustomersActionType => ({
+  type: CustomersActionTypes.GET_ALL_CUSTOMERS_SAGA,
+  value: { _page, _limit }
 })
 
 export const getCustomer = (id: number): CustomersActionType => ({

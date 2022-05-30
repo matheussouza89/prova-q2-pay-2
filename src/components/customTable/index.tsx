@@ -1,24 +1,33 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from 'react'
+import React from 'react'
 import { DataGrid, GridColDef } from '@mui/x-data-grid'
 import NoData from './NoData'
+import useRedux from 'hooks/useRedux'
 
 interface CustomTableProps {
   data: any[]
   columns: GridColDef[]
-  totalRegistros?: number
   isLoading?: boolean
-  onPageChange?: () => void
-  onPageSizeChange?: () => void
+  onPageChange?: any
+  onPageSizeChange?: any
+  page: number
+  pageSize: number
+  setPage: React.Dispatch<React.SetStateAction<number>>
+  setPageSize: React.Dispatch<React.SetStateAction<number>>
 }
 
 export default function CustomTable({
   data,
   columns,
-  isLoading
+  isLoading,
+  onPageChange,
+  onPageSizeChange,
+  page,
+  pageSize,
+  setPage,
+  setPageSize
 }: CustomTableProps) {
-  const [page, setPage] = useState(1)
-  const [pageSize, setPageSize] = useState(1)
+  const { dispatch } = useRedux()
   return (
     <div style={{ height: 400, width: '100%' }}>
       <DataGrid
@@ -28,10 +37,20 @@ export default function CustomTable({
         page={page}
         pageSize={pageSize}
         paginationMode="server"
-        onPageChange={(newPage) => setPage(newPage)}
-        onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+        onPageChange={(newPage) => {
+          setPage(newPage)
+          if (onPageChange) {
+            dispatch(onPageChange(newPage, pageSize))
+          }
+        }}
+        onPageSizeChange={(newPageSize) => {
+          setPageSize(newPageSize)
+          if (onPageSizeChange) {
+            dispatch(onPageSizeChange(page, newPageSize))
+          }
+        }}
         loading={isLoading}
-        rowCount={3}
+        rowCount={3} //Todo: verificar se existe possibilidade de trazer o número total de registros
         disableSelectionOnClick
         components={{
           NoResultsOverlay: () => {

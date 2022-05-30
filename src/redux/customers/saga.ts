@@ -11,10 +11,16 @@ import {
 import { customersApiResponseSuccess, setLoading } from './actions'
 import { CustomersData } from 'models/types'
 
-function* listarCustomers(): SagaIterator {
+function* listarCustomers(params: {
+  value: { _page: number; _limit: number }
+  type: string
+}): SagaIterator {
   try {
     yield put(setLoading(true))
-    const response = yield call(getCustomersApi)
+    const response = yield call(getCustomersApi, {
+      _page: params.value._page,
+      _limit: params.value._limit
+    })
     const customers = response.data
     yield put(
       customersApiResponseSuccess(CustomersActionTypes.SET_CUSTOMERS, customers)
@@ -51,7 +57,7 @@ function* criarCustomer(params: {
   try {
     yield put(setLoading(true))
     yield call(createCustomerApi, { data: params.value })
-    const response = yield call(getCustomersApi)
+    const response = yield call(getCustomersApi, { _page: 1, _limit: 5 })
     const customers = response.data
     yield put(
       customersApiResponseSuccess(CustomersActionTypes.SET_CUSTOMER, customers)
@@ -70,7 +76,7 @@ function* removerCustomer(params: {
   try {
     yield put(setLoading(true))
     yield call(removeCustomerApi, { id: params.value })
-    const response = yield call(getCustomersApi)
+    const response = yield call(getCustomersApi, { _page: 1, _limit: 5 })
     const customers = response.data
     yield put(
       customersApiResponseSuccess(CustomersActionTypes.SET_CUSTOMER, customers)
@@ -92,7 +98,7 @@ function* editarCustomer(params: {
       id: params.value.id,
       data: params.value.data
     })
-    const response = yield call(getCustomersApi)
+    const response = yield call(getCustomersApi, { _page: 1, _limit: 5 })
     const customers = response.data
     yield put(
       customersApiResponseSuccess(CustomersActionTypes.SET_CUSTOMER, customers)
