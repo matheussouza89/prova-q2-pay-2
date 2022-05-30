@@ -4,7 +4,8 @@ import { CustomersActionTypes } from './constants'
 import {
   getCustomers as getCustomersApi,
   getCustomer as getCustomerApi,
-  createCustomer as createCustomerApi
+  createCustomer as createCustomerApi,
+  removeCustomer as removeCustomerApi
 } from 'helpers'
 import {
   // customersApiResponseError,
@@ -61,6 +62,24 @@ function* criarCustomer(params: {
   }
 }
 
+function* removerCustomer(params: {
+  value: number
+  type: string
+}): SagaIterator {
+  try {
+    yield call(removeCustomerApi, { id: params.value })
+    const response = yield call(getCustomersApi)
+    const customers = response.data
+    yield put(
+      customersApiResponseSuccess(CustomersActionTypes.SET_CUSTOMER, customers)
+    )
+  } catch (error) {
+    // yield put(
+    //   customersApiResponseError(CustomersActionTypes.SET_LISTA_MOTIVOS, error)
+    // )
+  }
+}
+
 export function* watchListarCustomers() {
   yield takeEvery(CustomersActionTypes.GET_ALL_CUSTOMERS_SAGA, listarCustomers)
 }
@@ -73,11 +92,16 @@ export function* watchCriarCustomer() {
   yield takeEvery(CustomersActionTypes.POST_CUSTOMER_SAGA, criarCustomer)
 }
 
+export function* watchRemoverCustomer() {
+  yield takeEvery(CustomersActionTypes.REMOVE_CUSTOMER_SAGA, removerCustomer)
+}
+
 function* customersSaga() {
   yield all([
     fork(watchListarCustomers),
     fork(watchListarCustomer),
-    fork(watchCriarCustomer)
+    fork(watchCriarCustomer),
+    fork(watchRemoverCustomer)
   ])
 }
 

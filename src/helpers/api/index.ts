@@ -1,7 +1,8 @@
 import {
   getCustomers,
   getCustomer,
-  createCustomer
+  createCustomer,
+  removeCustomer
 } from 'helpers/api/customers'
 
-export { getCustomers, getCustomer, createCustomer }
+export { getCustomers, getCustomer, createCustomer, removeCustomer }
