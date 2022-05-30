@@ -22,3 +22,8 @@ export function removeCustomer(params: { id: number }) {
   const baseUrl = `/customers/${params.id}`
   return api.delete(baseUrl)
 }
+
+export function editCustomer(params: { id: number; data: CustomersData }) {
+  const baseUrl = `/customers/${params.id}`
+  return api.update(baseUrl, params.data)
+}

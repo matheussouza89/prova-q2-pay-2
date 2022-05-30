@@ -5,7 +5,8 @@ import {
   getCustomers as getCustomersApi,
   getCustomer as getCustomerApi,
   createCustomer as createCustomerApi,
-  removeCustomer as removeCustomerApi
+  removeCustomer as removeCustomerApi,
+  editCustomer as editCustomerApi
 } from 'helpers'
 import {
   // customersApiResponseError,
@@ -80,6 +81,27 @@ function* removerCustomer(params: {
   }
 }
 
+function* editarCustomer(params: {
+  value: { id: number; data: CustomersData }
+  type: string
+}): SagaIterator {
+  try {
+    yield call(editCustomerApi, {
+      id: params.value.id,
+      data: params.value.data
+    })
+    const response = yield call(getCustomersApi)
+    const customers = response.data
+    yield put(
+      customersApiResponseSuccess(CustomersActionTypes.SET_CUSTOMER, customers)
+    )
+  } catch (error) {
+    // yield put(
+    //   customersApiResponseError(CustomersActionTypes.SET_LISTA_MOTIVOS, error)
+    // )
+  }
+}
+
 export function* watchListarCustomers() {
   yield takeEvery(CustomersActionTypes.GET_ALL_CUSTOMERS_SAGA, listarCustomers)
 }
@@ -96,12 +118,17 @@ export function* watchRemoverCustomer() {
   yield takeEvery(CustomersActionTypes.REMOVE_CUSTOMER_SAGA, removerCustomer)
 }
 
+export function* watchEditarCustomer() {
+  yield takeEvery(CustomersActionTypes.EDIT_CUSTOMER_SAGA, editarCustomer)
+}
+
 function* customersSaga() {
   yield all([
     fork(watchListarCustomers),
     fork(watchListarCustomer),
     fork(watchCriarCustomer),
-    fork(watchRemoverCustomer)
+    fork(watchRemoverCustomer),
+    fork(watchEditarCustomer)
   ])
 }
 

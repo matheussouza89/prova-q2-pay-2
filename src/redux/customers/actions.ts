@@ -13,6 +13,7 @@ export type CustomersActionType = {
     | CustomersActionTypes.POST_CUSTOMER_SAGA
     | CustomersActionTypes.SET_CUSTOMER
     | CustomersActionTypes.REMOVE_CUSTOMER_SAGA
+    | CustomersActionTypes.EDIT_CUSTOMER_SAGA
   value?: any
   field?: string
 }
@@ -68,4 +69,12 @@ export const postCustomer = (data: CustomersData): CustomersActionType => ({
 export const removeCustomer = (id: number): CustomersActionType => ({
   type: CustomersActionTypes.REMOVE_CUSTOMER_SAGA,
   value: id
+})
+
+export const putCustomer = (
+  id: number,
+  data: CustomersData
+): CustomersActionType => ({
+  type: CustomersActionTypes.EDIT_CUSTOMER_SAGA,
+  value: { id: id, data: data }
 })
