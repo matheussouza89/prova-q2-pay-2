@@ -12,7 +12,7 @@ import {
 const ActionsButtons = (param: { id: number }) => {
   const { dispatch } = useRedux()
   return (
-    <>
+    <div className="actions-buttons">
       <AiOutlineEye
         onClick={() => {
           dispatch(getCustomer(param.id))
@@ -31,7 +31,7 @@ const ActionsButtons = (param: { id: number }) => {
           dispatch(removeCustomer(param.id))
         }}
       />
-    </>
+    </div>
   )
 }
 
