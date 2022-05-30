@@ -4,7 +4,8 @@ import {
   Row,
   Breadcrumb as BreadcrumbB,
   BreadcrumbItem,
-  Container
+  Container,
+  Label
 } from 'reactstrap'
 
 interface BreadcrumbItems {
@@ -24,7 +25,7 @@ const Breadcrumbs = ({ title, breadcrumbItems }: BreadcrumbsProps) => {
       <Row>
         <Col>
           <div className="d-flex justify-content-between align-items-center">
-            <h4 className="page-title">{title}</h4>
+            <Label className="page-title">{title}</Label>
             <div className="page-path">
               <BreadcrumbB>
                 <BreadcrumbItem>

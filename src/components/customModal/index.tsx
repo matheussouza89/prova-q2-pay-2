@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap'
+import { Label, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap'
 
 interface CustomModalProps {
   isOpen: boolean
@@ -22,7 +22,7 @@ const CustomModal = ({
     <div className="modal">
       <Modal size={size} isOpen={isOpen} toggle={handleClose}>
         <ModalHeader toggle={handleClose}>
-          <h4 className="modal-title">{title}</h4>
+          <Label className="modal-title">{title}</Label>
         </ModalHeader>
         <ModalBody>{children}</ModalBody>
         <ModalFooter>{footer}</ModalFooter>

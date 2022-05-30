@@ -8,8 +8,13 @@ import {
   removeCustomer as removeCustomerApi,
   editCustomer as editCustomerApi
 } from 'helpers'
-import { customersApiResponseSuccess, setLoading } from './actions'
+import {
+  customersApiResponseSuccess,
+  setLoading,
+  setStateModal
+} from './actions'
 import { CustomersData } from 'models/types'
+import { toast } from 'react-toastify'
 
 function* listarCustomers(params: {
   value: { _page: number; _limit: number }
@@ -26,7 +31,7 @@ function* listarCustomers(params: {
       customersApiResponseSuccess(CustomersActionTypes.SET_CUSTOMERS, customers)
     )
   } catch (error) {
-    console.log(error)
+    toast.error('Ocorreu um erro') // Todo: verificar possibilidade de exibir mensagem de erro da API
   } finally {
     yield put(setLoading(false))
   }
@@ -44,7 +49,7 @@ function* listarCustomer(params: {
       customersApiResponseSuccess(CustomersActionTypes.SET_CUSTOMER, customer)
     )
   } catch (error) {
-    console.log(error)
+    toast.error('Ocorreu um erro') // Todo: verificar possibilidade de exibir mensagem de erro da API
   } finally {
     yield put(setLoading(false))
   }
@@ -57,13 +62,15 @@ function* criarCustomer(params: {
   try {
     yield put(setLoading(true))
     yield call(createCustomerApi, { data: params.value })
-    const response = yield call(getCustomersApi, { _page: 1, _limit: 3 })
+    const response = yield call(getCustomersApi, { _page: 0, _limit: 3 })
     const customers = response.data
     yield put(
-      customersApiResponseSuccess(CustomersActionTypes.SET_CUSTOMER, customers)
+      customersApiResponseSuccess(CustomersActionTypes.SET_CUSTOMERS, customers)
     )
+    yield put(setStateModal(false))
+    toast.success('Operação realizada com sucesso')
   } catch (error) {
-    console.log(error)
+    toast.error('Ocorreu um erro') // Todo: verificar possibilidade de exibir mensagem de erro da API
   } finally {
     yield put(setLoading(false))
   }
@@ -76,13 +83,14 @@ function* removerCustomer(params: {
   try {
     yield put(setLoading(true))
     yield call(removeCustomerApi, { id: params.value })
-    const response = yield call(getCustomersApi, { _page: 1, _limit: 3 })
+    const response = yield call(getCustomersApi, { _page: 0, _limit: 3 })
     const customers = response.data
     yield put(
-      customersApiResponseSuccess(CustomersActionTypes.SET_CUSTOMER, customers)
+      customersApiResponseSuccess(CustomersActionTypes.SET_CUSTOMERS, customers)
     )
+    toast.success('Operação realizada com sucesso')
   } catch (error) {
-    console.log(error)
+    toast.error('Ocorreu um erro') // Todo: verificar possibilidade de exibir mensagem de erro da API
   } finally {
     yield put(setLoading(false))
   }
@@ -98,13 +106,15 @@ function* editarCustomer(params: {
       id: params.value.id,
       data: params.value.data
     })
-    const response = yield call(getCustomersApi, { _page: 1, _limit: 3 })
+    const response = yield call(getCustomersApi, { _page: 0, _limit: 3 })
     const customers = response.data
     yield put(
-      customersApiResponseSuccess(CustomersActionTypes.SET_CUSTOMER, customers)
+      customersApiResponseSuccess(CustomersActionTypes.SET_CUSTOMERS, customers)
     )
+    yield put(setStateModal(false))
+    toast.success('Operação realizada com sucesso')
   } catch (error) {
-    console.log(error)
+    toast.error('Ocorreu um erro') // Todo: verificar possibilidade de exibir mensagem de erro da API
   } finally {
     yield put(setLoading(false))
   }

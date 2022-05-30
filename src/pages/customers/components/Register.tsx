@@ -52,7 +52,7 @@ const Register = ({ data, seeRegister }: RegisterProps) => {
             onChange={(e) => {
               onChange(e.target.value, 'bank.code')
             }}
-            value={data?.bank.code}
+            value={data?.bank?.code}
             type="text"
             placeholder="Digite aqui"
             maxLength={10}

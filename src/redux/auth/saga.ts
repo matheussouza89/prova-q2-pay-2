@@ -4,6 +4,7 @@ import { SagaIterator } from '@redux-saga/core'
 import { AuthActionTypes } from './constants'
 import { login as loginApi } from 'helpers'
 import { APICore } from 'helpers/api/apiCore'
+import { toast } from 'react-toastify'
 
 const api = new APICore()
 
@@ -13,6 +14,7 @@ function* login(params: { value: AuthData; type: string }): SagaIterator {
     const auth = response.data
     api.setLoggedInUser(auth.accessToken)
   } catch (error) {
+    toast.error('Ocorreu um erro') // Todo: verificar possibilidade de exibir mensagem de erro da API
     api.setLoggedInUser(false)
   }
 }

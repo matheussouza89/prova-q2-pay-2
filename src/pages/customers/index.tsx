@@ -28,10 +28,10 @@ const Customers = () => {
     }))
 
   useEffect(() => {
-    dispatch(getCustomers(1, 3))
+    dispatch(getCustomers(0, 3))
   }, [dispatch])
 
-  const [page, setPage] = useState(1)
+  const [page, setPage] = useState(0)
   const [pageSize, setPageSize] = useState(3)
 
   const handleClose = () => {
