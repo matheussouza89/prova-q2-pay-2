@@ -3,6 +3,7 @@ export type CustomersState = {
   customer?: CustomersData
   loadingTable: boolean
   isOpenModal: boolean
+  seeRegister: boolean
 }
 
 export type CustomersData = {

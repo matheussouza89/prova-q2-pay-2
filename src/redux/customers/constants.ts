@@ -8,6 +8,7 @@ export enum CustomersActionTypes {
   CLEAN_CUSTOMERS = '@@customers/CLEAN_CUSTOMERS',
   SET_LOADING_TABLE = '@@customers/SET_LOADING_TABLE',
   SET_STATE_MODAL = '@@customers/SET_STATE_MODAL',
+  SET_SEE_REGISTER = '@@customers/SET_SEE_REGISTER',
   GET_ALL_CUSTOMERS_SAGA = '@@customers/GET_ALL_CUSTOMERS_SAGA',
   GET_CUSTOMER_SAGA = '@@customers/GET_CUSTOMER_SAGA',
   POST_CUSTOMER_SAGA = '@@customers/POST_CUSTOMER_SAGA',

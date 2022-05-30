@@ -2,7 +2,12 @@ import React from 'react'
 import useRedux from 'hooks/useRedux'
 import { AiOutlineEye } from 'react-icons/ai'
 import { BsPencil, BsTrash } from 'react-icons/bs'
-import { getCustomer, removeCustomer, setStateModal } from 'redux/actions'
+import {
+  getCustomer,
+  removeCustomer,
+  setSeeRegister,
+  setStateModal
+} from 'redux/actions'
 
 const ActionsButtons = (param: { id: number }) => {
   const { dispatch } = useRedux()
@@ -11,6 +16,8 @@ const ActionsButtons = (param: { id: number }) => {
       <AiOutlineEye
         onClick={() => {
           dispatch(getCustomer(param.id))
+          dispatch(setSeeRegister(true))
+          dispatch(setStateModal(true))
         }}
       />
       <BsPencil

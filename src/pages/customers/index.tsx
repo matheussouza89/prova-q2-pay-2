@@ -13,17 +13,19 @@ import {
   getCustomers,
   postCustomer,
   putCustomer,
+  setSeeRegister,
   setStateModal
 } from 'redux/actions'
 
 const Customers = () => {
   const { dispatch, appSelector } = useRedux()
-  const { customers, customer, loadingTable, isOpenModal } =
+  const { customers, customer, loadingTable, isOpenModal, seeRegister } =
     appSelector<AppState>((state) => ({
       customers: state.Customers.customers,
       customer: state.Customers.customer,
       loadingTable: state.Customers.loadingTable,
-      isOpenModal: state.Customers.isOpenModal
+      isOpenModal: state.Customers.isOpenModal,
+      seeRegister: state.Customers.seeRegister
     }))
 
   useEffect(() => {
@@ -33,6 +35,7 @@ const Customers = () => {
   const handleClose = () => {
     dispatch(cleanCustomer())
     dispatch(setStateModal(false))
+    dispatch(setSeeRegister(false))
   }
 
   const handleShow = () => {
@@ -72,16 +75,20 @@ const Customers = () => {
         title="Customer"
         footer={
           <>
-            <Button color="secondary" onClick={handleClose}>
+            <Button color="danger" onClick={handleClose}>
               Fechar
             </Button>
-            <Button className="btn-default" onClick={() => salvar()}>
+            <Button
+              disabled={seeRegister}
+              className="btn-default"
+              onClick={() => salvar()}
+            >
               Salvar
             </Button>
           </>
         }
       >
-        <Register data={customer} />
+        <Register data={customer} seeRegister={seeRegister} />
       </CustomModal>
     </Main>
   )

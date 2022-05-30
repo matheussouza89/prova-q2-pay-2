@@ -7,9 +7,10 @@ import { maskCPFCNPJ } from 'util/masks'
 
 interface RegisterProps {
   data?: CustomersData
+  seeRegister: boolean
 }
 
-const Register = ({ data }: RegisterProps) => {
+const Register = ({ data, seeRegister }: RegisterProps) => {
   const { dispatch } = useRedux()
 
   function onChange(value: string | number, field: string) {
@@ -29,6 +30,7 @@ const Register = ({ data }: RegisterProps) => {
             type="text"
             placeholder="Digite aqui"
             maxLength={18}
+            disabled={seeRegister}
           />
         </Col>
         <Col md={4}>
@@ -41,6 +43,7 @@ const Register = ({ data }: RegisterProps) => {
             type="text"
             placeholder="Digite aqui"
             maxLength={100}
+            disabled={seeRegister}
           />
         </Col>
         <Col md={4}>
@@ -53,6 +56,7 @@ const Register = ({ data }: RegisterProps) => {
             type="text"
             placeholder="Digite aqui"
             maxLength={10}
+            disabled={seeRegister}
           />
         </Col>
         <Col md={4}>
@@ -65,6 +69,7 @@ const Register = ({ data }: RegisterProps) => {
             type="text"
             placeholder="Digite aqui"
             maxLength={100}
+            disabled={seeRegister}
           />
         </Col>
         <Col md={4}>
@@ -77,6 +82,7 @@ const Register = ({ data }: RegisterProps) => {
             type="text"
             placeholder="Digite aqui"
             maxLength={10}
+            disabled={seeRegister}
           />
         </Col>
         <Col md={4}>
@@ -89,6 +95,7 @@ const Register = ({ data }: RegisterProps) => {
             type="text"
             placeholder="Digite aqui"
             maxLength={10}
+            disabled={seeRegister}
           />
         </Col>
       </Row>
