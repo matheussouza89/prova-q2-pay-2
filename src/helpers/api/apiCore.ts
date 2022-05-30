@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // import jwtDecode from 'jwt-decode'
 import axios from 'axios'
-// import config from '../../config'
 
 axios.defaults.headers.post['Content-Type'] = 'application/json'
 axios.defaults.baseURL = 'http://localhost:5000'
@@ -122,5 +121,13 @@ class APICore {
 //     setAuthorization(token)
 //   }
 // }
+
+export const isAuthenticated = () => {
+  const token = localStorage.getItem('TOKEN_KEY')
+  if (token) {
+    return false
+  }
+  return true
+}
 
 export { APICore, setAuthorization }

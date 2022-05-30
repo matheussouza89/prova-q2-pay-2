@@ -1,9 +1,19 @@
-export const isAuthenticated = () => {
-  const token = localStorage.getItem('TOKEN_KEY')
+import { APICore } from './apiCore'
 
-  if (token) {
-    return false
-  }
+const api = new APICore()
 
-  return true
+export function register() {
+  const baseUrl = `/register`
+  return api.create(baseUrl, {
+    email: 'olivier@mail.com',
+    password: 'bestPassw0rd'
+  })
+}
+
+export function signin() {
+  const baseUrl = `/login`
+  return api.create(baseUrl, {
+    email: 'olivier@mail.com',
+    password: 'bestPassw0rd'
+  })
 }
