@@ -14,7 +14,8 @@ const INIT_STATE: CustomersState = {
       code: ''
     }
   },
-  loadingTable: false
+  loadingTable: false,
+  isOpenModal: false
 }
 
 type CustomersActionType = {
@@ -24,7 +25,9 @@ type CustomersActionType = {
     | CustomersActionTypes.CLEAN_CUSTOMERS
     | CustomersActionTypes.SET_CUSTOMERS
     | CustomersActionTypes.SET_CUSTOMER
+    | CustomersActionTypes.CLEAN_CUSTOMER
     | CustomersActionTypes.SET_LOADING_TABLE
+    | CustomersActionTypes.SET_STATE_MODAL
   field?: any
   value?: any
 }
@@ -66,8 +69,12 @@ const Customers = (state = INIT_STATE, action: CustomersActionType) => {
         ...state,
         customer: { ...state.customer, [action.field]: action.value }
       }
+    case CustomersActionTypes.CLEAN_CUSTOMER:
+      return { ...state, customer: INIT_STATE.customer }
     case CustomersActionTypes.SET_LOADING_TABLE:
       return { ...state, loadingTable: action.value }
+    case CustomersActionTypes.SET_STATE_MODAL:
+      return { ...state, isOpenModal: action.value }
     default:
       return { ...state }
   }

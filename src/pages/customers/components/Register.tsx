@@ -3,6 +3,7 @@ import useRedux from 'hooks/useRedux'
 import { CustomersData } from 'models/types'
 import { Col, Form, Input, Label, Row } from 'reactstrap'
 import { setCustomer } from 'redux/actions'
+import { maskCPFCNPJ } from 'util/masks'
 
 interface RegisterProps {
   data?: CustomersData
@@ -22,11 +23,12 @@ const Register = ({ data }: RegisterProps) => {
           <Label>CPF/CNPJ</Label>
           <Input
             onChange={(e) => {
-              onChange(e.target.value, 'document')
+              onChange(maskCPFCNPJ(e.target.value), 'document')
             }}
             value={data?.document}
             type="text"
             placeholder="Digite aqui"
+            maxLength={18}
           />
         </Col>
         <Col md={4}>
@@ -38,6 +40,7 @@ const Register = ({ data }: RegisterProps) => {
             value={data?.name}
             type="text"
             placeholder="Digite aqui"
+            maxLength={100}
           />
         </Col>
         <Col md={4}>
@@ -49,6 +52,7 @@ const Register = ({ data }: RegisterProps) => {
             value={data?.bank.code}
             type="text"
             placeholder="Digite aqui"
+            maxLength={10}
           />
         </Col>
         <Col md={4}>
@@ -60,6 +64,7 @@ const Register = ({ data }: RegisterProps) => {
             value={data?.bank?.bankName}
             type="text"
             placeholder="Digite aqui"
+            maxLength={100}
           />
         </Col>
         <Col md={4}>
@@ -71,6 +76,7 @@ const Register = ({ data }: RegisterProps) => {
             value={data?.bank?.agency}
             type="text"
             placeholder="Digite aqui"
+            maxLength={10}
           />
         </Col>
         <Col md={4}>
@@ -82,6 +88,7 @@ const Register = ({ data }: RegisterProps) => {
             value={data?.bank?.account}
             type="text"
             placeholder="Digite aqui"
+            maxLength={10}
           />
         </Col>
       </Row>

@@ -8,11 +8,7 @@ import {
   removeCustomer as removeCustomerApi,
   editCustomer as editCustomerApi
 } from 'helpers'
-import {
-  // customersApiResponseError,
-  customersApiResponseSuccess,
-  setLoading
-} from './actions'
+import { customersApiResponseSuccess, setLoading } from './actions'
 import { CustomersData } from 'models/types'
 
 function* listarCustomers(): SagaIterator {
@@ -24,9 +20,7 @@ function* listarCustomers(): SagaIterator {
       customersApiResponseSuccess(CustomersActionTypes.SET_CUSTOMERS, customers)
     )
   } catch (error) {
-    // yield put(
-    //   customersApiResponseError(CustomersActionTypes.SET_LISTA_MOTIVOS, error)
-    // )
+    console.log(error)
   } finally {
     yield put(setLoading(false))
   }
@@ -44,9 +38,7 @@ function* listarCustomer(params: {
       customersApiResponseSuccess(CustomersActionTypes.SET_CUSTOMER, customer)
     )
   } catch (error) {
-    // yield put(
-    //   customersApiResponseError(CustomersActionTypes.SET_LISTA_MOTIVOS, error)
-    // )
+    console.log(error)
   } finally {
     yield put(setLoading(false))
   }
@@ -65,9 +57,7 @@ function* criarCustomer(params: {
       customersApiResponseSuccess(CustomersActionTypes.SET_CUSTOMER, customers)
     )
   } catch (error) {
-    // yield put(
-    //   customersApiResponseError(CustomersActionTypes.SET_LISTA_MOTIVOS, error)
-    // )
+    console.log(error)
   } finally {
     yield put(setLoading(false))
   }
@@ -86,9 +76,7 @@ function* removerCustomer(params: {
       customersApiResponseSuccess(CustomersActionTypes.SET_CUSTOMER, customers)
     )
   } catch (error) {
-    // yield put(
-    //   customersApiResponseError(CustomersActionTypes.SET_LISTA_MOTIVOS, error)
-    // )
+    console.log(error)
   } finally {
     yield put(setLoading(false))
   }
@@ -110,9 +98,7 @@ function* editarCustomer(params: {
       customersApiResponseSuccess(CustomersActionTypes.SET_CUSTOMER, customers)
     )
   } catch (error) {
-    // yield put(
-    //   customersApiResponseError(CustomersActionTypes.SET_LISTA_MOTIVOS, error)
-    // )
+    console.log(error)
   } finally {
     yield put(setLoading(false))
   }

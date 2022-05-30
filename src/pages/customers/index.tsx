@@ -1,37 +1,42 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import Main from 'layouts/Main'
 import CustomTable from 'components/customTable'
 import Breadcrumbs from 'components/breadcrumbs'
 import { COLUMNS } from './constants/columns'
-import { Button, Col, Row } from 'reactstrap'
+import { Button } from 'reactstrap'
 import useRedux from 'hooks/useRedux'
 import { AppState } from 'redux/store'
 import CustomModal from 'components/customModal'
 import Register from './components/Register'
-import { getCustomers, postCustomer, putCustomer } from 'redux/actions'
+import {
+  cleanCustomer,
+  getCustomers,
+  postCustomer,
+  putCustomer,
+  setStateModal
+} from 'redux/actions'
 
 const Customers = () => {
   const { dispatch, appSelector } = useRedux()
-  const { customers, customer, loadingTable } = appSelector<AppState>(
-    (state) => ({
+  const { customers, customer, loadingTable, isOpenModal } =
+    appSelector<AppState>((state) => ({
       customers: state.Customers.customers,
       customer: state.Customers.customer,
-      loadingTable: state.Customers.loadingTable
-    })
-  )
+      loadingTable: state.Customers.loadingTable,
+      isOpenModal: state.Customers.isOpenModal
+    }))
 
   useEffect(() => {
     dispatch(getCustomers())
   }, [dispatch])
 
-  const [show, setShow] = useState(false)
-
   const handleClose = () => {
-    setShow(false)
+    dispatch(cleanCustomer())
+    dispatch(setStateModal(false))
   }
 
   const handleShow = () => {
-    setShow(true)
+    dispatch(setStateModal(true))
   }
 
   function salvar() {
@@ -49,11 +54,11 @@ const Customers = () => {
           { label: 'Customer', path: '/pages/home', active: true }
         ]}
       />
-      <Row>
-        <Col md={4}>
-          <Button onClick={() => handleShow()}>Cadastrar</Button>
-        </Col>
-      </Row>
+      <div className="d-flex justify-content-end">
+        <Button className="btn-default" onClick={() => handleShow()}>
+          Cadastrar
+        </Button>
+      </div>
       <div className="container-table mt-4">
         <CustomTable
           columns={COLUMNS}
@@ -62,7 +67,7 @@ const Customers = () => {
         />
       </div>
       <CustomModal
-        isOpen={show}
+        isOpen={isOpenModal}
         handleClose={handleClose}
         title="Customer"
         footer={
@@ -70,7 +75,7 @@ const Customers = () => {
             <Button color="secondary" onClick={handleClose}>
               Fechar
             </Button>
-            <Button color="primary" onClick={() => salvar()}>
+            <Button className="btn-default" onClick={() => salvar()}>
               Salvar
             </Button>
           </>

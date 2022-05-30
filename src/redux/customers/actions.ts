@@ -9,7 +9,9 @@ export type CustomersActionType = {
     | CustomersActionTypes.SET_CUSTOMERS
     | CustomersActionTypes.CLEAN_CUSTOMERS
     | CustomersActionTypes.SET_CUSTOMER
+    | CustomersActionTypes.CLEAN_CUSTOMER
     | CustomersActionTypes.SET_LOADING_TABLE
+    | CustomersActionTypes.SET_STATE_MODAL
     | CustomersActionTypes.GET_ALL_CUSTOMERS_SAGA
     | CustomersActionTypes.GET_CUSTOMER_SAGA
     | CustomersActionTypes.POST_CUSTOMER_SAGA
@@ -62,6 +64,10 @@ export const setCustomer = (
   field: field
 })
 
+export const cleanCustomer = (): CustomersActionType => ({
+  type: CustomersActionTypes.CLEAN_CUSTOMER
+})
+
 export const postCustomer = (data: CustomersData): CustomersActionType => ({
   type: CustomersActionTypes.POST_CUSTOMER_SAGA,
   value: data
@@ -82,5 +88,10 @@ export const putCustomer = (
 
 export const setLoading = (value: boolean): CustomersActionType => ({
   type: CustomersActionTypes.SET_LOADING_TABLE,
+  value: value
+})
+
+export const setStateModal = (value: boolean): CustomersActionType => ({
+  type: CustomersActionTypes.SET_STATE_MODAL,
   value: value
 })

@@ -41,13 +41,13 @@ const Sidebar = ({ children }: SidebarProps) => {
               <span className="nav_logo-name">Lorem Ipsum Amet</span>
             </a>
             <div className="nav_list">
-              <a href="#" className="nav_link active">
+              <a href="#" className="nav_link">
                 <AiOutlineDashboard className="nav_icon" />
                 <span className="nav_name">Dashboard</span>
               </a>
-              <a href="#" className="nav_link">
+              <a href="#" className="nav_link active">
                 <AiOutlineUser className="nav_icon" />
-                <span className="nav_name">Users</span>
+                <span className="nav_name">Customers</span>
               </a>
               <a href="#" className="nav_link">
                 <AiOutlineMessage className="nav_icon" />

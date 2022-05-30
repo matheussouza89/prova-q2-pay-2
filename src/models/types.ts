@@ -2,6 +2,7 @@ export type CustomersState = {
   customers?: CustomersData[]
   customer?: CustomersData
   loadingTable: boolean
+  isOpenModal: boolean
 }
 
 export type CustomersData = {

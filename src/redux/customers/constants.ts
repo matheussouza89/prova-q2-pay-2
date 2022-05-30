@@ -3,9 +3,11 @@ export enum CustomersActionTypes {
   API_RESPONSE_ERROR = '@@customers/API_RESPONSE_ERROR',
 
   SET_CUSTOMER = '@@customers/SET_CUSTOMER',
+  CLEAN_CUSTOMER = '@@customers/CLEAN_CUSTOMER',
   SET_CUSTOMERS = '@@customers/SET_CUSTOMERS',
   CLEAN_CUSTOMERS = '@@customers/CLEAN_CUSTOMERS',
   SET_LOADING_TABLE = '@@customers/SET_LOADING_TABLE',
+  SET_STATE_MODAL = '@@customers/SET_STATE_MODAL',
   GET_ALL_CUSTOMERS_SAGA = '@@customers/GET_ALL_CUSTOMERS_SAGA',
   GET_CUSTOMER_SAGA = '@@customers/GET_CUSTOMER_SAGA',
   POST_CUSTOMER_SAGA = '@@customers/POST_CUSTOMER_SAGA',
