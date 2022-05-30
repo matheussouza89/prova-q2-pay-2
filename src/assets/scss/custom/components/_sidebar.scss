@@ -90,9 +90,6 @@ a {
   background-color: var(--white-color);
 }
 @media screen and (min-width: 768px) {
-  body {
-    padding-left: calc(var(--nav-width));
-  }
   .l-navbar {
     left: 0;
     padding: 1rem 1rem 0 0;
@@ -101,9 +98,9 @@ a {
     width: calc(var(--nav-width) + 156px);
   }
   .main-content.open {
-    padding-left: calc(156px + 20px);
+    padding-left: calc(var(--nav-width) + 156px + 20px);
   }
   .main-content:not(.open) {
-    padding-left: calc(0px + 20px);
+    padding-left: calc(var(--nav-width) + 0px + 20px);
   }
 }
