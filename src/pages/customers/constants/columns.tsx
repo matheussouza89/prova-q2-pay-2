@@ -1,6 +1,5 @@
 import { GridColDef, GridValueGetterParams } from '@mui/x-data-grid'
-import { AiOutlineEye } from 'react-icons/ai'
-import { BsPencil, BsTrash } from 'react-icons/bs'
+import ActionsButtons from '../components/ActionsButtons'
 
 export const COLUMNS: GridColDef[] = [
   { field: 'document', headerName: 'CPF/CNPJ', width: 200 },
@@ -8,7 +7,6 @@ export const COLUMNS: GridColDef[] = [
   {
     field: 'code',
     headerName: 'Código',
-    // width: 130,
     valueGetter: (params: GridValueGetterParams) =>
       `${params.row.bank.code || ''}`
   },
@@ -23,7 +21,6 @@ export const COLUMNS: GridColDef[] = [
     field: 'agency',
     headerName: 'Agência',
     type: 'number',
-    // width: 90,
     valueGetter: (params: GridValueGetterParams) =>
       `${params.row.bank.agency || ''}`
   },
@@ -31,7 +28,6 @@ export const COLUMNS: GridColDef[] = [
     field: 'account',
     headerName: 'Conta',
     sortable: true,
-    // width: 160,
     valueGetter: (params: GridValueGetterParams) =>
       `${params.row.bank.account || ''}`
   },
@@ -39,12 +35,6 @@ export const COLUMNS: GridColDef[] = [
     field: 'actions',
     type: 'actions',
     headerName: 'Ações',
-    renderCell: () => (
-      <>
-        <AiOutlineEye />
-        <BsPencil />
-        <BsTrash />
-      </>
-    )
+    renderCell: (params) => <ActionsButtons id={params.row.id} />
   }
 ]
