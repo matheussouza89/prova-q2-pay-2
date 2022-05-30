@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from 'react'
 import { DataGrid, GridColDef } from '@mui/x-data-grid'
+import NoData from './NoData'
 
 interface CustomTableProps {
   data: any[]
@@ -32,6 +33,11 @@ export default function CustomTable({
         loading={isLoading}
         rowCount={3}
         disableSelectionOnClick
+        components={{
+          NoResultsOverlay: () => {
+            return <NoData />
+          }
+        }}
       />
     </div>
   )
