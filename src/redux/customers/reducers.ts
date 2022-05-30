@@ -3,7 +3,18 @@
 import { CustomersActionTypes } from './constants'
 
 const INIT_STATE: CustomersState = {
-  customers: []
+  customers: [],
+  customer: {
+    id: 0,
+    name: '',
+    document: '',
+    bank: {
+      account: '',
+      agency: '',
+      bankName: '',
+      code: ''
+    }
+  }
 }
 
 type CustomersData = {
@@ -24,12 +35,14 @@ type CustomersActionType = {
     | CustomersActionTypes.API_RESPONSE_ERROR
     | CustomersActionTypes.CLEAN_CUSTOMERS
     | CustomersActionTypes.SET_CUSTOMERS
+    | CustomersActionTypes.SET_CUSTOMER
   field?: any
   value?: any
 }
 
 export type CustomersState = {
   customers?: CustomersData[]
+  customer?: CustomersData
 }
 
 const Customers = (state = INIT_STATE, action: CustomersActionType) => {
@@ -38,6 +51,8 @@ const Customers = (state = INIT_STATE, action: CustomersActionType) => {
       switch (action.value.actionType) {
         case CustomersActionTypes.SET_CUSTOMERS:
           return { ...state, customers: action.value.data }
+        case CustomersActionTypes.SET_CUSTOMER:
+          return { ...state, customer: action.value.data }
         default:
           return { ...state }
       }
@@ -45,6 +60,8 @@ const Customers = (state = INIT_STATE, action: CustomersActionType) => {
       return { ...state, customers: action.value }
     case CustomersActionTypes.CLEAN_CUSTOMERS:
       return { ...state, customers: INIT_STATE.customers }
+    case CustomersActionTypes.SET_CUSTOMER:
+      return { ...state, customer: action.value.data }
     default:
       return { ...state }
   }

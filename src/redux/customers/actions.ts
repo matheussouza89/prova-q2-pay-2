@@ -7,6 +7,7 @@ export type CustomersActionType = {
     | CustomersActionTypes.SET_CUSTOMERS
     | CustomersActionTypes.CLEAN_CUSTOMERS
     | CustomersActionTypes.GET_ALL_CUSTOMERS_SAGA
+    | CustomersActionTypes.GET_CUSTOMER_SAGA
   value?: any
   field?: string
 }
@@ -38,4 +39,9 @@ export const cleanCustomers = (): CustomersActionType => ({
 
 export const getCustomers = (): CustomersActionType => ({
   type: CustomersActionTypes.GET_ALL_CUSTOMERS_SAGA
+})
+
+export const getCustomer = (id: number): CustomersActionType => ({
+  type: CustomersActionTypes.GET_CUSTOMER_SAGA,
+  value: id
 })

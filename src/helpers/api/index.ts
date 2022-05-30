@@ -1,3 +1,3 @@
-import { getCustomers } from 'helpers/api/customers'
+import { getCustomers, getCustomer } from 'helpers/api/customers'
 
-export { getCustomers }
+export { getCustomers, getCustomer }

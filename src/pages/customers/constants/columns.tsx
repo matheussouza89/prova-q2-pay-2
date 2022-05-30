@@ -1,4 +1,5 @@
 import { GridColDef, GridValueGetterParams } from '@mui/x-data-grid'
+import { AiOutlineEye } from 'react-icons/ai'
 import { BsPencil, BsTrash } from 'react-icons/bs'
 
 export const COLUMNS: GridColDef[] = [
@@ -40,8 +41,9 @@ export const COLUMNS: GridColDef[] = [
     headerName: 'Ações',
     renderCell: () => (
       <>
-        <BsTrash />
+        <AiOutlineEye />
         <BsPencil />
+        <BsTrash />
       </>
     )
   }
