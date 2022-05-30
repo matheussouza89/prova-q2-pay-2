@@ -10,12 +10,14 @@ import {
 } from 'helpers'
 import {
   // customersApiResponseError,
-  customersApiResponseSuccess
+  customersApiResponseSuccess,
+  setLoading
 } from './actions'
 import { CustomersData } from 'models/types'
 
 function* listarCustomers(): SagaIterator {
   try {
+    yield put(setLoading(true))
     const response = yield call(getCustomersApi)
     const customers = response.data
     yield put(
@@ -25,6 +27,8 @@ function* listarCustomers(): SagaIterator {
     // yield put(
     //   customersApiResponseError(CustomersActionTypes.SET_LISTA_MOTIVOS, error)
     // )
+  } finally {
+    yield put(setLoading(false))
   }
 }
 
@@ -33,6 +37,7 @@ function* listarCustomer(params: {
   type: string
 }): SagaIterator {
   try {
+    yield put(setLoading(true))
     const response = yield call(getCustomerApi, { id: params.value })
     const customer = response.data
     yield put(
@@ -42,6 +47,8 @@ function* listarCustomer(params: {
     // yield put(
     //   customersApiResponseError(CustomersActionTypes.SET_LISTA_MOTIVOS, error)
     // )
+  } finally {
+    yield put(setLoading(false))
   }
 }
 
@@ -50,6 +57,7 @@ function* criarCustomer(params: {
   type: string
 }): SagaIterator {
   try {
+    yield put(setLoading(true))
     yield call(createCustomerApi, { data: params.value })
     const response = yield call(getCustomersApi)
     const customers = response.data
@@ -60,6 +68,8 @@ function* criarCustomer(params: {
     // yield put(
     //   customersApiResponseError(CustomersActionTypes.SET_LISTA_MOTIVOS, error)
     // )
+  } finally {
+    yield put(setLoading(false))
   }
 }
 
@@ -68,6 +78,7 @@ function* removerCustomer(params: {
   type: string
 }): SagaIterator {
   try {
+    yield put(setLoading(true))
     yield call(removeCustomerApi, { id: params.value })
     const response = yield call(getCustomersApi)
     const customers = response.data
@@ -78,6 +89,8 @@ function* removerCustomer(params: {
     // yield put(
     //   customersApiResponseError(CustomersActionTypes.SET_LISTA_MOTIVOS, error)
     // )
+  } finally {
+    yield put(setLoading(false))
   }
 }
 
@@ -86,6 +99,7 @@ function* editarCustomer(params: {
   type: string
 }): SagaIterator {
   try {
+    yield put(setLoading(true))
     yield call(editCustomerApi, {
       id: params.value.id,
       data: params.value.data
@@ -99,6 +113,8 @@ function* editarCustomer(params: {
     // yield put(
     //   customersApiResponseError(CustomersActionTypes.SET_LISTA_MOTIVOS, error)
     // )
+  } finally {
+    yield put(setLoading(false))
   }
 }
 
