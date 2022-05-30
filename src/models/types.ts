@@ -15,3 +15,12 @@ export type CustomersData = {
     account: string
   }
 }
+
+export type AuthState = {
+  login: AuthData
+}
+
+export type AuthData = {
+  email: string
+  password: string
+}

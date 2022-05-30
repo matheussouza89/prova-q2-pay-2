@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// import jwtDecode from 'jwt-decode'
+import jwtDecode from 'jwt-decode'
 import axios from 'axios'
 
 axios.defaults.headers.post['Content-Type'] = 'application/json'
@@ -44,11 +44,6 @@ const setAuthorization = (token: string | null) => {
   else delete axios.defaults.headers.common['Authorization']
 }
 
-// const getUserFromSession = () => {
-//   const user = sessionStorage.getItem('user')
-//   return user ? (typeof user == 'object' ? user : JSON.parse(user)) : null
-// }
-
 class APICore {
   get = (url: string, params: any) => {
     let response
@@ -77,57 +72,29 @@ class APICore {
     return axios.delete(url)
   }
 
-  // isUserAuthenticated = () => {
-  //   const user = this.getLoggedInUser()
+  isAuthenticated = () => {
+    const token = localStorage.getItem('TOKEN_KEY')
+    if (!token) {
+      return false
+    }
 
-  //   if (!user || (user && !user.token)) {
-  //     return false
-  //   }
-  //   const decoded: any = jwtDecode(user.token)
-  //   const currentTime = Date.now() / 1000
-  //   if (decoded.exp < currentTime) {
-  //     console.warn('access token expired')
-  //     return false
-  //   } else {
-  //     return true
-  //   }
-  // }
-
-  // setLoggedInUser = (session: any) => {
-  //   if (session)
-  //     sessionStorage.setItem(AUTH_SESSION_KEY, JSON.stringify(session))
-  //   else {
-  //     sessionStorage.removeItem(AUTH_SESSION_KEY)
-  //   }
-  // }
-
-  // getLoggedInUser = () => {
-  //   return getUserFromSession()
-  // }
-
-  // setUserInSession = (modifiedUser: any) => {
-  //   const userInfo = sessionStorage.getItem(AUTH_SESSION_KEY)
-  //   if (userInfo) {
-  //     const { token, user } = JSON.parse(userInfo)
-  //     this.setLoggedInUser({ token, ...user, ...modifiedUser })
-  //   }
-  // }
-}
-
-// const user = getUserFromSession()
-// if (user) {
-//   const { token } = user
-//   if (token) {
-//     setAuthorization(token)
-//   }
-// }
-
-export const isAuthenticated = () => {
-  const token = localStorage.getItem('TOKEN_KEY')
-  if (token) {
-    return false
+    const decoded: any = jwtDecode(token)
+    const currentTime = Date.now() / 1000
+    if (decoded.exp < currentTime) {
+      return false
+    } else {
+      return true
+    }
   }
-  return true
+
+  setLoggedInUser = (token: any) => {
+    if (token) {
+      localStorage.setItem('TOKEN_KEY', token)
+      window.location.href = '/customers'
+    } else {
+      localStorage.removeItem('TOKEN_KEY')
+    }
+  }
 }
 
 export { APICore, setAuthorization }

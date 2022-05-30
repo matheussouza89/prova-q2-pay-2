@@ -6,10 +6,13 @@ import {
   editCustomer
 } from 'helpers/api/customers'
 
+import { login } from 'helpers/api/auth'
+
 export {
   getCustomers,
   getCustomer,
   createCustomer,
   removeCustomer,
-  editCustomer
+  editCustomer,
+  login
 }

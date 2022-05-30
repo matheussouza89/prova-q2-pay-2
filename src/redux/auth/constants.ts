@@ -1,0 +1,7 @@
+export enum AuthActionTypes {
+  API_RESPONSE_SUCCESS = '@@auth/API_RESPONSE_SUCCESS',
+  API_RESPONSE_ERROR = '@@auth/API_RESPONSE_ERROR',
+
+  SET_AUTH = '@@auth/SET_AUTH',
+  POST_AUTH_LOGIN_SAGA = '@@auth/POST_AUTH_LOGIN_SAGA'
+}

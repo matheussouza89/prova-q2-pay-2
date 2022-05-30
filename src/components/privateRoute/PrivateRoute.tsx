@@ -1,5 +1,7 @@
-import { isAuthenticated } from 'helpers/api/apiCore'
+import { APICore } from 'helpers/api/apiCore'
 import { Navigate, Outlet } from 'react-router-dom'
 
+const api = new APICore()
+
 export const PrivateRoute = () =>
-  isAuthenticated() ? <Outlet /> : <Navigate to="/login" replace />
+  api.isAuthenticated() ? <Outlet /> : <Navigate to="/login" replace />
