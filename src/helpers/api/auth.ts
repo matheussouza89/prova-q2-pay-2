@@ -7,7 +7,7 @@ export function register() {
   const baseUrl = `/register`
   return api.create(baseUrl, {
     email: 'guilherme@gmail.com',
-    password: '123'
+    password: '123456'
   })
 }
 

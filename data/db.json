@@ -37,5 +37,12 @@
   "login": {
     "username": "Guilherme Sembeneli",
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ikd1aWxoZXJtZSBRMlBheSIsImVtYWlsIjoicTJwYXlAcTJwYXkuY29tLmJyIiwiaWF0IjoxNTE2MjM5MDIyfQ.oeSQVqs557aaURcIU9v7MgJVKLwsr6fenZ4EUSd1ZPo"
-  }
+  },
+  "users": [
+    {
+      "email": "guilherme@gmail.com",
+      "password": "$2a$10$Ds12EpzgL5O9D5NB/bfb/.gw1aY8gndzs5m4nGMYwBwYmwH7B9Soe",
+      "id": 1
+    }
+  ]
 }

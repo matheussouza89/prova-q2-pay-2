@@ -6,6 +6,7 @@ import logo from 'assets/img/login.png'
 import useRedux from 'hooks/useRedux'
 import { setLogin, loginSystem } from 'redux/actions'
 import { AppState } from 'redux/store'
+import { register } from 'helpers/api/auth'
 
 const Login = () => {
   const { dispatch, appSelector } = useRedux()
@@ -69,7 +70,13 @@ const Login = () => {
               <Button className="btn-google">
                 <FcGoogle /> Continuar com Google
               </Button>
-              <a href="#" className="signin-link">
+              <a
+                role="button"
+                className="signin-link"
+                onClick={() => {
+                  register()
+                }}
+              >
                 Ainda não tem cadastro? Inscreva-se aqui
               </a>
             </div>
