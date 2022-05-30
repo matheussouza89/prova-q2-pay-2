@@ -1,6 +1,7 @@
 export type CustomersState = {
   customers?: CustomersData[]
   customer?: CustomersData
+  loadingTable: boolean
 }
 
 export type CustomersData = {

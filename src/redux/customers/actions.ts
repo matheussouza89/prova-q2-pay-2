@@ -8,10 +8,11 @@ export type CustomersActionType = {
     | CustomersActionTypes.API_RESPONSE_ERROR
     | CustomersActionTypes.SET_CUSTOMERS
     | CustomersActionTypes.CLEAN_CUSTOMERS
+    | CustomersActionTypes.SET_CUSTOMER
+    | CustomersActionTypes.SET_LOADING_TABLE
     | CustomersActionTypes.GET_ALL_CUSTOMERS_SAGA
     | CustomersActionTypes.GET_CUSTOMER_SAGA
     | CustomersActionTypes.POST_CUSTOMER_SAGA
-    | CustomersActionTypes.SET_CUSTOMER
     | CustomersActionTypes.REMOVE_CUSTOMER_SAGA
     | CustomersActionTypes.EDIT_CUSTOMER_SAGA
   value?: any
@@ -77,4 +78,9 @@ export const putCustomer = (
 ): CustomersActionType => ({
   type: CustomersActionTypes.EDIT_CUSTOMER_SAGA,
   value: { id: id, data: data }
+})
+
+export const setLoading = (value: boolean): CustomersActionType => ({
+  type: CustomersActionTypes.SET_LOADING_TABLE,
+  value: value
 })

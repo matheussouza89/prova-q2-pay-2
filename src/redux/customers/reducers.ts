@@ -13,7 +13,8 @@ const INIT_STATE: CustomersState = {
       bankName: '',
       code: ''
     }
-  }
+  },
+  loadingTable: false
 }
 
 type CustomersActionType = {
@@ -23,6 +24,7 @@ type CustomersActionType = {
     | CustomersActionTypes.CLEAN_CUSTOMERS
     | CustomersActionTypes.SET_CUSTOMERS
     | CustomersActionTypes.SET_CUSTOMER
+    | CustomersActionTypes.SET_LOADING_TABLE
   field?: any
   value?: any
 }
@@ -64,6 +66,8 @@ const Customers = (state = INIT_STATE, action: CustomersActionType) => {
         ...state,
         customer: { ...state.customer, [action.field]: action.value }
       }
+    case CustomersActionTypes.SET_LOADING_TABLE:
+      return { ...state, loadingTable: action.value }
     default:
       return { ...state }
   }

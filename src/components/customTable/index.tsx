@@ -10,7 +10,11 @@ interface CustomTableProps {
   onPageSizeChange?: () => void
 }
 
-export default function CustomTable({ data, columns }: CustomTableProps) {
+export default function CustomTable({
+  data,
+  columns,
+  isLoading
+}: CustomTableProps) {
   const [page, setPage] = useState(1)
   const [pageSize, setPageSize] = useState(1)
   return (
@@ -24,7 +28,7 @@ export default function CustomTable({ data, columns }: CustomTableProps) {
         paginationMode="server"
         onPageChange={(newPage) => setPage(newPage)}
         onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-        loading={false}
+        loading={isLoading}
         rowCount={3}
         disableSelectionOnClick
       />

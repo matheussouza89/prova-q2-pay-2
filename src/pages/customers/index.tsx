@@ -12,10 +12,13 @@ import { getCustomers, postCustomer, putCustomer } from 'redux/actions'
 
 const Customers = () => {
   const { dispatch, appSelector } = useRedux()
-  const { customers, customer } = appSelector<AppState>((state) => ({
-    customers: state.Customers.customers,
-    customer: state.Customers.customer
-  }))
+  const { customers, customer, loadingTable } = appSelector<AppState>(
+    (state) => ({
+      customers: state.Customers.customers,
+      customer: state.Customers.customer,
+      loadingTable: state.Customers.loadingTable
+    })
+  )
 
   useEffect(() => {
     dispatch(getCustomers())
@@ -52,7 +55,11 @@ const Customers = () => {
         </Col>
       </Row>
       <div className="container-table mt-4">
-        <CustomTable columns={COLUMNS} data={customers} />
+        <CustomTable
+          columns={COLUMNS}
+          data={customers}
+          isLoading={loadingTable}
+        />
       </div>
       <CustomModal
         isOpen={show}
