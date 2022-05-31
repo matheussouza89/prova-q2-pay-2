@@ -4,9 +4,10 @@ import { AiOutlineEye } from 'react-icons/ai'
 import { BsPencil, BsTrash } from 'react-icons/bs'
 import {
   getCustomer,
-  removeCustomer,
+  setItemSelected,
   setSeeRegister,
-  setStateModal
+  setStateModal,
+  setStateModalConfirmation
 } from 'redux/actions'
 
 const ActionsButtons = (param: { id: number }) => {
@@ -28,7 +29,8 @@ const ActionsButtons = (param: { id: number }) => {
       />
       <BsTrash
         onClick={() => {
-          dispatch(removeCustomer(param.id))
+          dispatch(setItemSelected(param.id))
+          dispatch(setStateModalConfirmation(true))
         }}
       />
     </div>

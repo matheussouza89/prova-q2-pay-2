@@ -13,6 +13,8 @@ export type CustomersActionType = {
     | CustomersActionTypes.SET_LOADING_TABLE
     | CustomersActionTypes.SET_STATE_MODAL
     | CustomersActionTypes.SET_SEE_REGISTER
+    | CustomersActionTypes.SET_STATE_MODAL_CONFIRMATION
+    | CustomersActionTypes.SET_ITEM_SELECTED
     | CustomersActionTypes.GET_ALL_CUSTOMERS_SAGA
     | CustomersActionTypes.GET_CUSTOMER_SAGA
     | CustomersActionTypes.POST_CUSTOMER_SAGA
@@ -104,4 +106,16 @@ export const setStateModal = (value: boolean): CustomersActionType => ({
 export const setSeeRegister = (value: boolean): CustomersActionType => ({
   type: CustomersActionTypes.SET_SEE_REGISTER,
   value: value
+})
+
+export const setStateModalConfirmation = (
+  value: boolean
+): CustomersActionType => ({
+  type: CustomersActionTypes.SET_STATE_MODAL_CONFIRMATION,
+  value: value
+})
+
+export const setItemSelected = (id: number): CustomersActionType => ({
+  type: CustomersActionTypes.SET_ITEM_SELECTED,
+  value: id
 })

@@ -12,20 +12,31 @@ import {
   getCustomers,
   postCustomer,
   putCustomer,
+  removeCustomer,
   setSeeRegister,
-  setStateModal
+  setStateModal,
+  setStateModalConfirmation
 } from 'redux/actions'
 
 const Customers = () => {
   const { dispatch, appSelector } = useRedux()
-  const { customers, customer, loadingTable, isOpenModal, seeRegister } =
-    appSelector((state) => ({
-      customers: state.Customers.customers,
-      customer: state.Customers.customer,
-      loadingTable: state.Customers.loadingTable,
-      isOpenModal: state.Customers.isOpenModal,
-      seeRegister: state.Customers.seeRegister
-    }))
+  const {
+    customers,
+    customer,
+    loadingTable,
+    isOpenModal,
+    seeRegister,
+    isOpenModalConfirmation,
+    itemSelected
+  } = appSelector((state) => ({
+    customers: state.Customers.customers,
+    customer: state.Customers.customer,
+    loadingTable: state.Customers.loadingTable,
+    isOpenModal: state.Customers.isOpenModal,
+    seeRegister: state.Customers.seeRegister,
+    isOpenModalConfirmation: state.Customers.isOpenModalConfirmation,
+    itemSelected: state.Customers.itemSelected
+  }))
 
   useEffect(() => {
     dispatch(getCustomers(0, 3))
@@ -44,11 +55,22 @@ const Customers = () => {
     dispatch(setStateModal(true))
   }
 
+  const handleCloseConfirmation = () => {
+    dispatch(setStateModalConfirmation(false))
+  }
+
   function salvar() {
     if (!customer.id) {
       return dispatch(postCustomer(customer))
     }
     return dispatch(putCustomer(customer.id, customer))
+  }
+
+  function remover(id: number) {
+    if (id !== 0) {
+      dispatch(removeCustomer(id))
+      dispatch(setStateModalConfirmation(false))
+    }
   }
 
   return (
@@ -97,6 +119,27 @@ const Customers = () => {
         }
       >
         <Register data={customer} seeRegister={seeRegister} />
+      </CustomModal>
+      <CustomModal
+        isOpen={isOpenModalConfirmation}
+        handleClose={handleCloseConfirmation}
+        title="Atenção!"
+        size="md"
+        footer={
+          <>
+            <Button variant="secondary" onClick={handleCloseConfirmation}>
+              Cancelar
+            </Button>
+            <Button
+              className="btn-default"
+              onClick={() => remover(itemSelected)}
+            >
+              Excluir
+            </Button>
+          </>
+        }
+      >
+        <p>Deseja realmente excluir este registro?</p>
       </CustomModal>
     </Main>
   )

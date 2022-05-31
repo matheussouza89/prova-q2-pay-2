@@ -4,6 +4,8 @@ export type CustomersState = {
   loadingTable: boolean
   isOpenModal: boolean
   seeRegister: boolean
+  isOpenModalConfirmation: boolean
+  itemSelected: number
 }
 
 export type CustomersData = {

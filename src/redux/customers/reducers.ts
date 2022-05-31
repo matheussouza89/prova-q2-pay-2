@@ -16,7 +16,9 @@ const INIT_STATE: CustomersState = {
   },
   loadingTable: false,
   isOpenModal: false,
-  seeRegister: false
+  seeRegister: false,
+  isOpenModalConfirmation: false,
+  itemSelected: 0
 }
 
 type CustomersActionType = {
@@ -30,6 +32,8 @@ type CustomersActionType = {
     | CustomersActionTypes.SET_LOADING_TABLE
     | CustomersActionTypes.SET_STATE_MODAL
     | CustomersActionTypes.SET_SEE_REGISTER
+    | CustomersActionTypes.SET_STATE_MODAL_CONFIRMATION
+    | CustomersActionTypes.SET_ITEM_SELECTED
   field?: any
   value?: any
 }
@@ -79,6 +83,10 @@ const Customers = (state = INIT_STATE, action: CustomersActionType) => {
       return { ...state, isOpenModal: action.value }
     case CustomersActionTypes.SET_SEE_REGISTER:
       return { ...state, seeRegister: action.value }
+    case CustomersActionTypes.SET_STATE_MODAL_CONFIRMATION:
+      return { ...state, isOpenModalConfirmation: action.value }
+    case CustomersActionTypes.SET_ITEM_SELECTED:
+      return { ...state, itemSelected: action.value }
     default:
       return { ...state }
   }
