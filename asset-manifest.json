@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/prova-q2-pay-2/static/css/main.c33e71de.css",
-    "main.js": "/prova-q2-pay-2/static/js/main.7fcc9d05.js",
+    "main.js": "/prova-q2-pay-2/static/js/main.61db97dc.js",
     "static/media/login.png": "/prova-q2-pay-2/static/media/login.9ee2422b702aea52d41b.png",
     "static/media/notFound.svg": "/prova-q2-pay-2/static/media/notFound.2483a610094fee7ac4d696a7a359b56f.svg",
     "static/media/serverError.svg": "/prova-q2-pay-2/static/media/serverError.5b8cc4fb38caea58d17d7c6a2f2a78e2.svg",
     "static/media/noData.svg": "/prova-q2-pay-2/static/media/noData.29909e78f1f7ba52f4f882a07a5cf9de.svg",
     "index.html": "/prova-q2-pay-2/index.html",
     "main.c33e71de.css.map": "/prova-q2-pay-2/static/css/main.c33e71de.css.map",
-    "main.7fcc9d05.js.map": "/prova-q2-pay-2/static/js/main.7fcc9d05.js.map"
+    "main.61db97dc.js.map": "/prova-q2-pay-2/static/js/main.61db97dc.js.map"
   },
   "entrypoints": [
     "static/css/main.c33e71de.css",
-    "static/js/main.7fcc9d05.js"
+    "static/js/main.61db97dc.js"
   ]
 }
